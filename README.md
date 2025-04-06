@@ -38,16 +38,13 @@ chrome://extensions/
 
 4. 우측 상단의 "개발자 모드"를 활성화합니다.
 5. "압축해제된 확장 프로그램 로드" 버튼을 클릭
-
 ![image](https://github.com/user-attachments/assets/1a40931a-d774-4596-ad0b-15bf6a7b7c97)
-
 5. 클론한 폴더를 선택합니다.
 ![image](https://github.com/user-attachments/assets/844e1a63-0087-49ef-ba3d-7adddedceec1)
-
 6. 확장프로그램을 클릭합니다.
 ![image](https://github.com/user-attachments/assets/fb335eea-a460-45da-9631-8b2c8e3a56a6)
 7. Custom Root Directory에 입력
 ![image](https://github.com/user-attachments/assets/fac5a940-b033-4810-9243-7b646102b524)
-8.완료
+8. 완료
 ![image](https://github.com/user-attachments/assets/0cec55a3-f1a6-4e5d-a152-fcb5f7e28d53)
 

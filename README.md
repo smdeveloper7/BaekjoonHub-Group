@@ -2,35 +2,51 @@
   <img src="assets/thumbnail.png" alt="BaekjoonHub - Automatically sync your code to GitHub." width="400">
   <br>
   BaekjoonHub - Automatically sync your code to GitHub.
-  <br>
-  <br>
 </h1>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"/></a>
-  <a href="https://chrome.google.com/webstore/detail/ccammcjdkpgjmcpijpahlehmapgmphmk"><img src="https://img.shields.io/chrome-web-store/v/ccammcjdkpgjmcpijpahlehmapgmphmk.svg" alt="chrome-webstore"/></a>
-  <a href="https://chrome.google.com/webstore/detail/ccammcjdkpgjmcpijpahlehmapgmphmk"><img src="https://img.shields.io/chrome-web-store/d/ccammcjdkpgjmcpijpahlehmapgmphmk.svg" alt="users"></a>
-    
-</a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"/>
+  </a>
 </p>
 
+---
+
+## 📌 소개 (About This Project)
+
+이 프로젝트는 [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub)의 포크(Fork) 버전입니다.  
+원작자는 [BaekjoonHub]이며, 본 프로젝트는 기능 일부를 수정하거나 확장한 버전입니다.
+
+BaekjoonHub는 백준(BOJ) 문제 풀이를 GitHub 저장소에 **자동으로 업로드**해주는 크롬 확장 프로그램입니다.  
+이 포크 버전에서는 사용자가 **상위디렉토리 구조를 설정하고 플랫폼별 혹은 언어별로 선택**할 수 있는 기능이 포함되어 있습니다.
+
+---
 
 
-## 목차
 
+## 🛠 설치 및 사용 방법 (How to Install & Use)
 
-## 설치 및 연동(How to set it up)
+### 🔽 설치 방법
 
-<ol>
-  <li>크롬에서 설치 후 우측 상단의 popup 버튼을 클릭합니다.</li>
-  <li>"Authorize with GitHub" 버튼을 누르고 인증을 완료하면 Repository 연동 화면이 표시됩니다.</li>
-  <li>Repository를 신규로 만들거나 기존에 존재하는 Repository에 연동 가능합니다. (신규 Repository 생성시 visibility 기본값은 private으로 되어있습니다)</li>
-  <li>디렉토리 구조를 플랫폼별로 또는 언어별로 하는 옵션이 있습니다.</li>
-  <li>Get Started 버튼을 누르면 링크가 완료됩니다.</li>
-  <li>이후 제출화면이 감지되면 자동으로 업로드됩니다.</li>
-</ol>
-<br />
-<br />
+1. 이 저장소를 클론합니다:
 
+   ```bash
+   git clone https://github.com/smdeveloper7/BaekjoonHub-Group
+   ```
+2. 아래로 이동   
+chrome://extensions/
 
+4. 우측 상단의 "개발자 모드"를 활성화합니다.
+5. "압축해제된 확장 프로그램 로드" 버튼을 클릭하고, 클론한 폴더를 선택합니다.
+
+![image](https://github.com/user-attachments/assets/1a40931a-d774-4596-ad0b-15bf6a7b7c97)
+
+5. "압축해제된 확장 프로그램 로드" 버튼을 클릭하고, 클론한 폴더를 선택합니다.
+
+6. 확장프로그램을 클릭합니다.
+![image](https://github.com/user-attachments/assets/fb335eea-a460-45da-9631-8b2c8e3a56a6)
+7. Custom Root Directory에 입력
+![image](https://github.com/user-attachments/assets/fac5a940-b033-4810-9243-7b646102b524)
+8.완료
+![image](https://github.com/user-attachments/assets/0cec55a3-f1a6-4e5d-a152-fcb5f7e28d53)
 

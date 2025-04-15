@@ -9,6 +9,7 @@ let loader;
 
 const currentUrl = window.location.href;
 log(currentUrl);
+let userCommitMessage = null; // 전역 변수로 커밋 메시지 저장
 
 // 문제 제출 사이트의 경우에는 로더를 실행하고, 유저 페이지의 경우에는 버튼을 생성한다.
 // 백준 사이트 로그인 상태이면 username이 있으며, 아니면 없다.
@@ -56,9 +57,24 @@ function toastThenStopLoader(toastMessage, errorMessage){
 
 /* 파싱 직후 실행되는 함수 */
 async function beginUpload(bojData) {
-  bojData = preProcessEmptyObj(bojData);
   log('bojData', bojData);
   if (isNotEmpty(bojData)) {
+    // 커밋 메시지를 미리 입력받기
+    if (userCommitMessage === null) {
+      userCommitMessage = await getCommitMessagePrompt(bojData.message);
+      
+      // 사용자가 취소했다면 업로드 중단
+      if (userCommitMessage === null) {
+        console.log("GitHub 업로드가 취소되었습니다.");
+        return;
+      }
+      
+      // 입력받은 커밋 메시지로 bojData 업데이트
+      bojData.message = userCommitMessage;
+    }
+    
+    startUpload();
+
     const stats = await getStats();
     const hook = await getHook();
 
@@ -69,19 +85,38 @@ async function beginUpload(bojData) {
     }
 
     /* 현재 제출하려는 소스코드가 기존 업로드한 내용과 같다면 중지 */
-    cachedSHA = await getStatsSHAfromPath(`${hook}/${bojData.directory}/${bojData.fileName}`)
+    cachedSHA = await getStatsSHAfromPath(`\${hook}/\${bojData.directory}/\${bojData.fileName}`)
     calcSHA = calculateBlobSHA(bojData.code)
     log('cachedSHA', cachedSHA, 'calcSHA', calcSHA)
-
     if (cachedSHA == calcSHA) {
       markUploadedCSS(stats.branches, bojData.directory);
-      console.log(`현재 제출번호를 업로드한 기록이 있습니다.` /* submissionID ${bojData.submissionId}` */);
+      console.log(`현재 제출번호를 업로드한 기록이 있습니다. problemIdID \${bojData.problemId}`);
       return;
     }
-    /* 신규 제출 번호라면 새롭게 커밋  */
+    /* 신규 제출 번호라면 새롭게 커밋 - 이미 입력받은 커밋 메시지 사용 */
     await uploadOneSolveProblemOnGit(bojData, markUploadedCSS);
+    
+    // 업로드 완료 후 사용한 메시지 초기화
+    userCommitMessage = null;
   }
 }
+
+// 커밋 메시지를 입력받는 함수
+function getCommitMessagePrompt(defaultMessage) {
+  return new Promise((resolve) => {
+    // 약간의 지연을 둬서 모달이 나타나는 것과 겹치지 않게 함
+    setTimeout(() => {
+      try {
+        const message = window.prompt("GitHub 커밋 메시지를 입력하세요:", defaultMessage);
+        resolve(message === null ? null : (message.trim() || defaultMessage));
+      } catch (error) {
+        console.error("커밋 메시지 입력 중 오류:", error);
+        resolve(defaultMessage); // 오류 발생 시 기본 메시지 사용
+      }
+    }, 100); // 0.1초 후에 프롬프트 표시
+  });
+}
+
 
 async function versionUpdate() {
   log('start versionUpdate');
